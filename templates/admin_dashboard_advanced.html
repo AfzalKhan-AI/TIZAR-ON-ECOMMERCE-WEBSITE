@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Admin Dashboard - Advanced</title>
+</head>
+<body>
+
+<h1>Advanced Admin Dashboard</h1>
+
+<h2>Website Statistics</h2>
+
+<ul>
+    <li>Total Products: {{ stats.products }}</li>
+    <li>Total Users: {{ stats.users }}</li>
+    <li>Total Orders: {{ stats.orders }}</li>
+    <li>Total Sales: ₹{{ stats.total_sales }}</li>
+</ul>
+
+<a href="/admin/products">Manage Products</a><br>
+<a href="/admin/users">Manage Users</a><br>
+<a href="/admin/orders">Manage Orders</a><br>
+<a href="{{ url_for('logout') }}">Logout</a>
+
+</body>
+</html>

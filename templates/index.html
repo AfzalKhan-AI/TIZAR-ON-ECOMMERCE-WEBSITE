@@ -1,0 +1,91 @@
+{% extends "base.html" %}
+{% block title %}Home - TIZAR-ON{% endblock %}
+
+{% block content %}
+
+<!-- ================= SEARCH + FILTER FORM ================= -->
+<form method="GET" class="mb-4 p-3 bg-light rounded">
+  <div class="row">
+    <div class="col-md-4">
+      <input type="text" name="q" class="form-control" placeholder="Search products..." value="{{ q }}">
+    </div>
+
+    <div class="col-md-3">
+      <select name="category" class="form-select">
+        <option value="">All Categories</option>
+        <option value="Electronics" {% if category=='Electronics' %}selected{% endif %}>Electronics</option>
+        <option value="Clothes" {% if category=='Clothes' %}selected{% endif %}>Clothes</option>
+        <option value="Mobiles" {% if category=='Mobiles' %}selected{% endif %}>Mobiles</option>
+        <option value="Laptops" {% if category=='Laptops' %}selected{% endif %}>Laptops</option>
+        <option value="Food" {% if category=='Food' %}selected{% endif %}>Food</option>
+        <option value="Sports" {% if category=='Sports' %}selected{% endif %}>Sports</option>
+      </select>
+    </div>
+
+    <div class="col-md-2">
+      <input type="number" name="min" step="0.01" class="form-control" placeholder="Min Price">
+    </div>
+
+    <div class="col-md-2">
+      <input type="number" name="max" step="0.01" class="form-control" placeholder="Max Price">
+    </div>
+
+    <div class="col-md-1">
+      <button class="btn btn-primary w-100">Apply</button>
+    </div>
+  </div>
+</form>
+<!-- ======================================================= -->
+
+
+<div class="row">
+  <div class="col-md-9">
+
+    <div class="row">
+      {% for p in products %}
+      <div class="col-md-4 mb-3">
+        <div class="card h-100">
+
+          <!-- PRODUCT IMAGE -->
+          {% if p.image %}
+          <img src="{{ url_for('static', filename=p.image.replace('static/', '')) }}"
+               class="card-img-top"
+               style="height: 180px; object-fit: cover;">
+          {% else %}
+          <img src="{{ url_for('static', filename='no_image.png') }}"
+               class="card-img-top"
+               style="height:180px; object-fit:cover;">
+          {% endif %}
+
+          <div class="card-body">
+            <h5 class="card-title">{{ p.title }}</h5>
+            <p class="card-text text-truncate">{{ p.description or "" }}</p>
+            <p class="card-text fw-bold">₹ {{ "%.2f"|format(p.price) }}</p>
+
+            <p class="text-muted small">Category: <b>{{ p.category }}</b></p>
+
+            <a href="{{ url_for('product', pid=p.id) }}" class="btn btn-primary w-100">View</a>
+          </div>
+        </div>
+      </div>
+      {% else %}
+        <p>No products found.</p>
+      {% endfor %}
+    </div>
+
+  </div>
+
+  <!-- Sidebar -->
+  <div class="col-md-3">
+
+    <!-- AI ASSISTANT -->
+    <div class="card p-3">
+      <h6>AI Assistant</h6>
+      <p>Ask product questions or request summaries using the chat widget at bottom-right.</p>
+    </div>
+
+  </div>
+
+</div>
+
+{% endblock %}

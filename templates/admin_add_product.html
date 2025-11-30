@@ -1,0 +1,30 @@
+<h1>Add Product</h1>
+
+<form method="POST" enctype="multipart/form-data">
+
+    Title:<br>
+    <input type="text" name="title"><br><br>
+
+    Price:<br>
+    <input type="number" name="price" step="0.01"><br><br>
+
+    Category:<br>
+    <select name="category">
+        <option>Electronics</option>
+        <option>Clothes</option>
+        <option>Mobiles</option>
+        <option>Laptops</option>
+        <option>Food</option>
+        <option>Sports</option>
+        <option>Others</option>
+    </select>
+    <br><br>
+
+    Description:<br>
+    <textarea name="description"></textarea><br><br>
+
+    Product Image:<br>
+    <input type="file" name="image"><br><br>
+
+    <button type="submit">Add Product</button>
+</form>

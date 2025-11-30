@@ -1,0 +1,21 @@
+{% extends "base.html" %}
+{% block content %}
+<h3>Admin — Products</h3>
+<table class="table">
+  <thead><tr><th>ID</th><th>Title</th><th>Price</th><th>Actions</th></tr></thead>
+  <tbody>
+    {% for p in products %}
+      <tr>
+        <td>{{ p.id }}</td>
+        <td>{{ p.title }}</td>
+        <td>₹ {{ "%.2f"|format(p.price) }}</td>
+        <td>
+          <form method="post" action="{{ url_for('admin_delete_product', pid=p.id) }}" style="display:inline;">
+            <button class="btn btn-sm btn-danger">Delete</button>
+          </form>
+        </td>
+      </tr>
+    {% endfor %}
+  </tbody>
+</table>
+{% endblock %}

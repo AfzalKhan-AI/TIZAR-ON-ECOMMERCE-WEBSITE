@@ -1,0 +1,81 @@
+{% extends "base.html" %}
+{% block title %}Admin Dashboard{% endblock %}
+
+{% block content %}
+
+<h1 class="mb-4">Admin Dashboard</h1>
+
+<!-- STATISTICS -->
+<div class="row mb-4">
+    <div class="col-md-4">
+        <div class="card p-3 shadow-sm">
+            <h4>Total Products</h4>
+            <p class="lead">{{ total_products }}</p>
+        </div>
+    </div>
+
+    <div class="col-md-4">
+        <div class="card p-3 shadow-sm">
+            <h4>Total Users</h4>
+            <p class="lead">{{ total_users }}</p>
+        </div>
+    </div>
+
+    <div class="col-md-4">
+        <div class="card p-3 shadow-sm">
+            <h4>Total Orders</h4>
+            <p class="lead">{{ total_orders }}</p>
+        </div>
+    </div>
+</div>
+
+
+<!-- MAIN ACTION CARDS -->
+<div class="row">
+
+    <!-- Add Product Card -->
+    <div class="col-md-5">
+        <div class="card p-3 shadow-sm">
+            <h5>Add New Product</h5>
+
+            <form action="{{ url_for('admin_add_product') }}" method="POST" enctype="multipart/form-data">
+
+                <input class="form-control mb-2" name="title" placeholder="Product Title" required>
+
+                <input class="form-control mb-2" name="price" placeholder="Price" required>
+
+                <textarea class="form-control mb-2" name="description" placeholder="Short Description"></textarea>
+
+                <select name="category" class="form-control mb-2">
+                    <option value="">Select Category</option>
+                    <option value="Electronics">Electronics</option>
+                    <option value="Clothes">Clothes</option>
+                    <option value="Mobiles">Mobiles</option>
+                    <option value="Laptops">Laptops</option>
+                    <option value="Food">Food</option>
+                    <option value="Sports">Sports</option>
+                </select>
+
+                <input type="file" name="image" class="form-control mb-2">
+
+                <button class="btn btn-success w-100">Add Product</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Admin Controls Card -->
+    <div class="col-md-7">
+        <div class="card p-3 shadow-sm">
+            <h5>Admin Controls</h5>
+            <ul>
+                <li><a href="{{ url_for('admin_products') }}">Manage Products</a></li>
+                <li><a href="{{ url_for('admin_orders') }}">View All Orders</a></li>
+                <li><a href="{{ url_for('admin_users') }}">Manage Users</a></li>
+                <li><a href="{{ url_for('logout') }}">Logout</a></li>
+            </ul>
+        </div>
+    </div>
+
+</div>
+
+{% endblock %}

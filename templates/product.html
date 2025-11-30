@@ -1,0 +1,15 @@
+{% extends "base.html" %}
+{% block title %}{{ product.title }}{% endblock %}
+{% block content %}
+<div class="row">
+  <div class="col-md-8">
+    <h2>{{ product.title }}</h2>
+    <p>{{ product.description }}</p>
+    <h4>₹ {{ "%.2f"|format(product.price) }}</h4>
+    <form method="post" action="{{ url_for('add_to_cart', pid=product.id) }}">
+      <input type="number" name="qty" value="1" min="1" class="form-control w-25 d-inline">
+      <button class="btn btn-primary">Add to cart</button>
+    </form>
+  </div>
+</div>
+{% endblock %}

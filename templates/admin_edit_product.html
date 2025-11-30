@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Edit Product</title>
+</head>
+<body>
+
+<h1>Edit Product</h1>
+
+<form method="POST" enctype="multipart/form-data">
+    <label>Title</label><br>
+    <input type="text" name="title" value="{{ product.title }}"><br><br>
+
+    <label>Price</label><br>
+    <input type="number" name="price" value="{{ product.price }}"><br><br>
+
+    <label>Description</label><br>
+    <textarea name="description">{{ product.description }}</textarea><br><br>
+
+    <label>Image (optional)</label><br>
+    <input type="file" name="image"><br><br>
+
+    <button type="submit">Update</button>
+</form>
+
+</body>
+</html>

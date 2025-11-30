@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>All Orders</title>
+</head>
+<body>
+
+<h1>All Orders</h1>
+
+<table border="1" cellpadding="10">
+    <tr>
+        <th>Order ID</th>
+        <th>User</th>
+        <th>Total</th>
+        <th>Status</th>
+        <th>Date</th>
+    </tr>
+
+    {% for o in orders %}
+    <tr>
+        <td>{{ o.id }}</td>
+        <td>{{ o.user.name }}</td>
+        <td>₹{{ o.total }}</td>
+        <td>{{ o.status }}</td>
+        <td>{{ o.created_at }}</td>
+    </tr>
+    {% endfor %}
+</table>
+
+</body>
+</html>
